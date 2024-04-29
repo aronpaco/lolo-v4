@@ -7,8 +7,6 @@ import {} from "path";
 const url = `https://flipboard.com/@raimoseero/feed-nii8kd0sz`;
 
 const FetchData = async () => {
-  Parser.parse(url).then((result) => console.log("result: ", result));
-
   const res = await fetch(url, {
     headers: {
       "Cache-Control": "no-store",
@@ -16,12 +14,22 @@ const FetchData = async () => {
   });
   const html = await res.text();
 
-  const dom = new JSDOM(html);
+  const data = await Parser.parse(url, html);
+  console.log({ data });
+
+  const { title, content } = data;
+
+  // const dom = new JSDOM(html);
 
   // const document = dom.window.document;
   // console.log({html})
 
-  return html;
+  return (
+    <div>
+      <h1>{title}</h1>
+      <div>{content}</div>
+    </div>
+  );
 };
 
 export default FetchData;

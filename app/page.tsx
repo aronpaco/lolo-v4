@@ -6,7 +6,7 @@ export default async function Index() {
 
   return (
     <div>
-      <RssParser/>
+      <FetchData/>
     </div>
   )
 }
