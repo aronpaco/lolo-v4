@@ -1,5 +1,5 @@
 import { JSDOM } from "jsdom";
-import Parser from '@postlight/parser'
+import Parser from "@postlight/parser";
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import {} from "path";
@@ -7,8 +7,7 @@ import {} from "path";
 const url = `https://flipboard.com/@raimoseero/feed-nii8kd0sz`;
 
 const FetchData = async () => {
-  Parser.parse(url).then(result => console.log("result: ",result));
-  
+  Parser.parse(url).then((result) => console.log("result: ", result));
 
   const res = await fetch(url, {
     headers: {
@@ -22,7 +21,7 @@ const FetchData = async () => {
   // const document = dom.window.document;
   // console.log({html})
 
-  return html
+  return html;
 };
 
 export default FetchData;

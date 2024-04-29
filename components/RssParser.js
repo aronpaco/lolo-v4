@@ -1,11 +1,17 @@
-import Parser from '@postlight/parser'
-import FetchData from './FetchData'
-const url = `https://www.theverge.com/tech`;
+import Parser from "@postlight/parser";
+import FetchData from "./FetchData";
 
-const RssParser = () => {
-  const result = Parser.parse(url)
-  console.log({result})
-  return 0
-}
+const RssParser = async () => {
+  const page = `https://flipboard.com/@raimoseero/feed-nii8kd0sz`;
+  const data = await Parser.parse(page);
+  console.log({ data });
+  const { title } = data;
 
-export default RssParser
+  return (
+    <div>
+      <h1>{title}</h1>
+    </div>
+  );
+};
+
+export default RssParser;
