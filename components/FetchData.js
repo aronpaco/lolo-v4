@@ -4,32 +4,47 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import {} from "path";
 
-const url = `https://flipboard.com/@raimoseero/feed-nii8kd0sz`;
+const page = `https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss`;
 
 const FetchData = async () => {
-  const res = await fetch(url, {
+  const res = await fetch(page, {
     headers: {
       "Cache-Control": "no-store",
     },
   });
   const html = await res.text();
+  // console.log({ html });
 
-  const data = await Parser.parse(url, html);
-  console.log({ data });
+  // const data = await Parser.parse(page, html);
+  // console.log({ data });
+  /*
+  const {
+    title,
+    author,
+    date_published,
+    dek,
+    lead_image_url,
+    content,
+    next_page_url,
+    url,
+    domain,
+    excerpt,
+    word_count,
+    direction,
+    total_pages,
+    rendered_pages,
+  } = data;
+*/
+  const dom = new JSDOM(html);
+  const document = dom.window.document;
+  const articles = document.getElementsByTagName("item");
 
-  const { title, content } = data;
+  for (let i = 0; i < articles.length; i++) {
+    const articleContent = articles[i].innerHTML;
+    console.log({ articleContent });
+  }
 
-  // const dom = new JSDOM(html);
-
-  // const document = dom.window.document;
-  // console.log({html})
-
-  return (
-    <div>
-      <h1>{title}</h1>
-      <div>{content}</div>
-    </div>
-  );
+  return html;
 };
 
 export default FetchData;
