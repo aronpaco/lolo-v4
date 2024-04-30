@@ -37,11 +37,13 @@ const FetchData = async () => {
 */
   const dom = new JSDOM(html);
   const document = dom.window.document;
-  const articles = document.getElementsByTagName("item");
+  const itemElements = document.getElementsByTagName("item");
 
-  for (let i = 0; i < articles.length; i++) {
-    const articleContent = articles[i].innerHTML;
-    console.log({ articleContent });
+  for (let i = 0; i < itemElements.length; i++) {
+    const itemElement = itemElements[i];
+    const linkElement = itemElement.querySelector("link");
+    const linkContent = linkElement.textContent;
+    console.log({ linkContent });
   }
 
   return html;
