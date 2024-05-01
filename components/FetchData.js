@@ -44,7 +44,20 @@ const FetchData = async () => {
     //const linkElement = itemElement.querySelector("link");
     //const linkContent = linkElement.textContent;
     const lines = itemElement.split("\n");
-    console.log(lines[2]);
+    lines.forEach((line) => {
+      if (line.trim().startsWith("<link>")) {
+        line = line.replace("<link>", "");
+        console.log({ line });
+      } else if (
+        line.trim().startsWith("&lt;link&gt;") &&
+        line.trim().endsWith("&lt;/link&gt;")
+      ) {
+        line = line.replace("&lt;link&gt;", "");
+        line = line.replace("&lt;/link&gt;", "");
+        console.log({ line });
+      }
+    });
+    // console.log(lines[2]);
   }
 
   return html;
