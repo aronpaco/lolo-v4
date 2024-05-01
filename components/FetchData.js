@@ -40,10 +40,11 @@ const FetchData = async () => {
   const itemElements = document.getElementsByTagName("item");
 
   for (let i = 0; i < itemElements.length; i++) {
-    const itemElement = itemElements[i];
-    const linkElement = itemElement.querySelector("link");
-    const linkContent = linkElement.textContent;
-    console.log({ linkContent });
+    const itemElement = itemElements[i].innerHTML;
+    //const linkElement = itemElement.querySelector("link");
+    //const linkContent = linkElement.textContent;
+    const lines = itemElement.split("\n");
+    console.log(lines[2]);
   }
 
   return html;
