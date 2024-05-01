@@ -6,6 +6,12 @@ const DisplayData = async () => {
     console.log("Done parsing");
     // console.log({ parsedArticles });
 
+    parsedArticles.sort((b, a) => {
+      const dateA = new Date(a.date_published);
+      const dateB = new Date(b.date_published);
+      return dateA - dateB;
+    }, []);
+
     return (
       <div>
         <h1>Articles</h1>
