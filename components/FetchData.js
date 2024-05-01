@@ -23,28 +23,25 @@ const FetchData = async () => {
   function extractArticleUrls() {
     for (let i = 0; i < itemElements.length; i++) {
       const itemElement = itemElements[i].innerHTML;
-      //const linkElement = itemElement.querySelector("link");
-      //const linkContent = linkElement.textContent;
       const lines = itemElement.split("\n");
       lines.forEach((line) => {
         if (line.trim().startsWith("<link>")) {
           articleUrl = line.replace("<link>", "");
+          articleUrls.push(articleUrl);
         } else if (
           line.trim().startsWith("&lt;link&gt;") &&
           line.trim().endsWith("&lt;/link&gt;")
         ) {
           articleUrl = line.replace("&lt;link&gt;", "");
           articleUrl = line.replace("&lt;/link&gt;", "");
+          articleUrls.push(articleUrl);
         }
-        // console.log({ line });
-        articleUrls.push(articleUrl);
         return articleUrls;
       });
-      // console.log(lines[2]);
     }
-
     return articleUrls;
   }
+  console.log({ articleUrls });
   return articleUrls;
 };
 
