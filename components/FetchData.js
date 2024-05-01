@@ -34,7 +34,7 @@ const FetchData = async () => {
     }
     return articleUrls;
   }
-  console.log({ articleUrls });
+  //console.log({ articleUrls });
   return articleUrls;
 };
 

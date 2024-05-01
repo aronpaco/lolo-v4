@@ -12,37 +12,28 @@ const ParseData = async () => {
       return await Parser.parse(url);
     } catch (error) {
       if (retries > 0) {
-        console.log(`Retrying ${url}. Remaining retries: ${retries}`);
         return await parseWithRetry(url, retries - 1);
       }
       throw error;
     }
   };
 
-  articleUrls.forEach(async (articleUrl) => {
+  // Use map to create an array of promises
+  const parsingPromises = articleUrls.map(async (articleUrl) => {
     try {
       const result = await parseWithRetry(articleUrl);
-      results.push(result);
       console.log(`Parsed successfully: ${articleUrl}`);
-      parsedArticles.push(result);
+      return result;
     } catch (error) {
-      console.error(`Error parsing ${articleUrl}:`, error);
+      console.error(`Error parsing ${articleUrl}`);
     }
   });
 
-  /*
-  Parser.parse("https://techcrunch.com/2023/11/28/plane-takes-on-jira-with-open-source-project-management-tools-for-software-teams/").then((result) =>
-    console.log({ result })
-  );
-*/
-  /*
-  for (const articleUrl of articleUrls) {
-    Parser.parse(articleUrl).then((result) => console.log("i"));
-    results.push(result);
-  }
-  console.log({ results });
-  */
-  return articleUrls;
+  const parsedArticles = await Promise.all(parsingPromises);
+
+  // console.log({ parsedArticles });
+
+  return parsedArticles;
 };
 
 export default ParseData;
