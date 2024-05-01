@@ -28,13 +28,6 @@ const FetchData = async () => {
         if (line.trim().startsWith("<link>")) {
           articleUrl = line.replace("<link>", "");
           articleUrls.push(articleUrl);
-        } else if (
-          line.trim().startsWith("&lt;link&gt;") &&
-          line.trim().endsWith("&lt;/link&gt;")
-        ) {
-          articleUrl = line.replace("&lt;link&gt;", "");
-          articleUrl = line.replace("&lt;/link&gt;", "");
-          articleUrls.push(articleUrl);
         }
         return articleUrls;
       });
