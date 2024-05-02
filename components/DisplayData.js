@@ -4,16 +4,15 @@ const DisplayData = async () => {
   try {
     const parsedArticles = await ParseData();
     console.log("Done parsing");
-    // console.log({ parsedArticles });
 
     parsedArticles.sort((b, a) => {
       const dateA = new Date(a.date_published);
       const dateB = new Date(b.date_published);
       return dateA - dateB;
-    }, []);
+    });
 
     return (
-      <div>
+      <div className="articles-container">
         <h1>Articles</h1>
         {parsedArticles.map((article, index) => {
           if (!article || !article.title) {
@@ -21,19 +20,21 @@ const DisplayData = async () => {
           }
 
           return (
-            <div key={index} style={{ marginBottom: "20px" }}>
-              <h2>{article.title}</h2>
-              <br />
-              <strong>Author:</strong> {article.author || "Unknown"}
-              <br />
-              <strong>Date Published:</strong> {article.date_published}
-              <br />
-              <strong>Excerpt:</strong> {article.excerpt}
-              <br />
-              <strong>Word Count:</strong> {article.word_count}
-              <br />
-              <strong>URL:</strong> <a href={article.url}>{article.url}</a>
-              <br />
+            <div key={index} className="article-card">
+              <h2 className="article-title">
+                <a href={article.url} target="_blank" rel="noopener noreferrer">
+                  {article.title}
+                </a>
+              </h2>
+
+              <p className="article-meta">
+                <strong>Author:</strong> {article.author || "Unknown"} <br />
+                <strong>Date Published:</strong> {article.date_published}
+              </p>
+
+              <p>
+                <strong>Word Count:</strong> {article.word_count} <br />
+              </p>
             </div>
           );
         })}
