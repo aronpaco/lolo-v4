@@ -1,24 +1,18 @@
 import FetchData from "../components/FetchData";
 import Parser from "@postlight/parser";
 
-let newArticle, result;
-let results = [];
-let parsedArticles = [];
 const ParseData = async () => {
   const articleUrls = await FetchData();
+  // console.log({ articleUrls });
 
-  const parseWithRetry = async (url, retries = 3) => {
+  const parseWithRetry = async (url) => {
     try {
       return await Parser.parse(url);
     } catch (error) {
-      if (retries > 0) {
-        return await parseWithRetry(url, retries - 1);
-      }
       throw error;
     }
   };
 
-  // Use map to create an array of promises
   const parsingPromises = articleUrls.map(async (articleUrl) => {
     try {
       const result = await parseWithRetry(articleUrl);
