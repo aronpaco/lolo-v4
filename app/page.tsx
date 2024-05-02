@@ -7,8 +7,11 @@ import DisplayData from '../components/DisplayData'
 export default async function Index() {
 
   return (
-    <div>
-      <DisplayData/>
-    </div>
+    <body>
+      <div>
+        <h2>Articles</h2>
+        <DisplayData/>
+      </div>
+    </body>
   )
 }
