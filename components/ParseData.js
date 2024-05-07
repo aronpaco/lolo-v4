@@ -16,10 +16,10 @@ const ParseData = async () => {
   const parsingPromises = articleUrls.map(async (articleUrl) => {
     try {
       const result = await parseWithRetry(articleUrl);
-      console.log(`Parsed successfully: ${articleUrl}`);
+      // console.log(`Parsed successfully: ${articleUrl}`);
       return result;
     } catch (error) {
-      console.error(`Error parsing ${articleUrl}`);
+      // console.error(`Error parsing ${articleUrl}`);
     }
   });
 

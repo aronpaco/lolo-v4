@@ -6,7 +6,7 @@ import {} from "path";
 
 const page = `https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss`;
 let articleUrls = [];
-let articleUrl;
+let articleUrl, articleCategory;
 const FetchData = async () => {
   const res = await fetch(page, {
     headers: {
@@ -17,12 +17,20 @@ const FetchData = async () => {
 
   const dom = new JSDOM(html);
   const document = dom.window.document;
-  const itemElements = document.getElementsByTagName("item");
+  const itemElements = document.getElementsByTagName("item"); /* 
+  let articleCategories = document.querySelectorAll("category");
+  // articleCategories = articleCategories.innerHTML;
+  console.log({ articleCategories }); */
   extractArticleUrls();
+  // extractArticleCategories();
 
   function extractArticleUrls() {
     for (let i = 0; i < itemElements.length; i++) {
       const itemElement = itemElements[i].innerHTML;
+      const itemElement_ = itemElements[i];
+      let categoryElement = itemElement_.querySelector("category");
+      categoryElement = categoryElement.innerHTML;
+      console.log({ categoryElement });
       const lines = itemElement.split("\n");
       lines.forEach((line) => {
         if (line.trim().startsWith("<link>")) {
@@ -33,6 +41,10 @@ const FetchData = async () => {
       });
     }
     return articleUrls;
+  }
+
+  function extractArticleCategories() {
+    return articleCategories;
   }
   //console.log({ articleUrls });
   return articleUrls;
