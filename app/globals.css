@@ -5,7 +5,7 @@
 }
 
 .article-card {
-  width: 300px;
+  width: 450px;
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 8px;
@@ -21,11 +21,6 @@ a {
 }
 a:visited {
   color: #696969
-}
-
-.article-excerpt {
-  color: #666;
-  margin-bottom: 10px;
 }
 
 .article-meta {

@@ -13,7 +13,6 @@ const DisplayData = async () => {
 
     return (
       <div className="articles-container">
-        <h1>Articles</h1>
         {parsedArticles.map((article, index) => {
           if (!article || !article.title) {
             return null;
