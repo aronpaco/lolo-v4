@@ -7,6 +7,7 @@ import {} from "path";
 const page = `https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss`;
 let articleUrls = [];
 let articleUrl, articleCategory;
+let articleCategories = [];
 const FetchData = async () => {
   const res = await fetch(page, {
     headers: {
@@ -27,10 +28,17 @@ const FetchData = async () => {
   function extractArticleUrls() {
     for (let i = 0; i < itemElements.length; i++) {
       const itemElement = itemElements[i].innerHTML;
+
       const itemElement_ = itemElements[i];
-      let categoryElement = itemElement_.querySelector("category");
-      categoryElement = categoryElement.innerHTML;
-      console.log({ categoryElement });
+      const categoryElements = itemElement_.querySelectorAll("category");
+      categoryElements.forEach((categoryElement) => {
+        const categoryContent = categoryElement.textContent.trim();
+        if (categoryContent) {
+          articleCategories.push(categoryContent);
+        }
+        return articleCategories;
+      });
+
       const lines = itemElement.split("\n");
       lines.forEach((line) => {
         if (line.trim().startsWith("<link>")) {
@@ -40,13 +48,10 @@ const FetchData = async () => {
         return articleUrls;
       });
     }
-    return articleUrls;
+    return articleCategories, articleUrls;
   }
+  console.log(articleCategories);
 
-  function extractArticleCategories() {
-    return articleCategories;
-  }
-  //console.log({ articleUrls });
   return articleUrls;
 };
 
