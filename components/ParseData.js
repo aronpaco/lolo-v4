@@ -23,16 +23,19 @@ const ParseData = async () => {
   const parsingPromises = articleUrls.map(async (articleUrl) => {
     try {
       const result = await parseWithRetry(articleUrl[0]);
-      console.log(`Parsed successfully: ${articleUrl}`);
+      let articleCategory = articleUrl[1];
+      console.log({ articleCategory });
+      result.category = articleCategory;
+      //console.log(`Parsed successfully: ${articleUrl}`);
       return result;
     } catch (error) {
-      console.error(`Error parsing ${articleUrl}`);
+      //console.error(`Error parsing ${articleUrl[0]}`);
     }
   });
 
   const parsedArticles = await Promise.all(parsingPromises);
 
-  // console.log({ parsedArticles });
+  console.log({ parsedArticles });
 
   return parsedArticles;
 };
