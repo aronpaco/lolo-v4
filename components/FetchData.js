@@ -54,7 +54,7 @@ const FetchData = async () => {
     }
     return articleDataAll;
   }
-  console.log(articleDataAll);
+  //console.log(articleDataAll);
 
   return articleDataAll;
 };

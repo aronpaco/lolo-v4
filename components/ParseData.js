@@ -2,9 +2,13 @@ import FetchData from "../components/FetchData";
 import Parser from "@postlight/parser";
 
 const ParseData = async () => {
-  const articleUrls = await FetchData();
-  // console.log({ articleUrls });
+  let articleUrls = [];
+  const articleData = await FetchData();
 
+  for (let i = 0; i < articleData.length; i++) {
+    let articleUrl = articleData[i][0];
+    articleUrls.push(articleUrl);
+  }
   const parseWithRetry = async (url) => {
     try {
       return await Parser.parse(url);
