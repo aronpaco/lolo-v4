@@ -8,6 +8,8 @@ const page = `https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss`;
 let articleUrls = [];
 let articleUrl, articleCategory;
 let articleCategories = [];
+let articleDataAll = [];
+let articleData = [];
 const FetchData = async () => {
   const res = await fetch(page, {
     headers: {
@@ -28,31 +30,33 @@ const FetchData = async () => {
   function extractArticleUrls() {
     for (let i = 0; i < itemElements.length; i++) {
       const itemElement = itemElements[i].innerHTML;
-
       const itemElement_ = itemElements[i];
-      const categoryElements = itemElement_.querySelectorAll("category");
-      categoryElements.forEach((categoryElement) => {
-        const categoryContent = categoryElement.textContent.trim();
-        if (categoryContent) {
-          articleCategories.push(categoryContent);
-        }
-        return articleCategories;
-      });
+      articleData = [];
 
       const lines = itemElement.split("\n");
       lines.forEach((line) => {
         if (line.trim().startsWith("<link>")) {
           articleUrl = line.replace("<link>", "");
-          articleUrls.push(articleUrl);
+          articleData.push(articleUrl);
         }
-        return articleUrls;
+        return articleData;
       });
-    }
-    return articleCategories, articleUrls;
-  }
-  console.log(articleCategories);
 
-  return articleUrls;
+      const categoryElements = itemElement_.querySelectorAll("category");
+      categoryElements.forEach((categoryElement) => {
+        const categoryContent = categoryElement.textContent.trim();
+        if (categoryContent) {
+          articleData.push(categoryContent);
+        }
+        return articleCategories;
+      });
+      articleDataAll.push(articleData);
+    }
+    return articleDataAll;
+  }
+  console.log(articleDataAll);
+
+  return articleDataAll;
 };
 
 export default FetchData;
