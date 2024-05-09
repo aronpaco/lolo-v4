@@ -27,8 +27,16 @@ const DisplayData = async () => {
               </h2>
 
               <p className="article-meta">
-                <strong>Author:</strong> {article.author || "Unknown"} <br />
-                <strong>Date Published:</strong> {article.date_published}
+                {article.category && (
+                  <strong>Category: {article.category}</strong>
+                )}
+                <br />
+                {article.author && <strong>Author: {article.author}</strong>}
+                <br />
+                {article.date_published && (
+                  <strong>Date published: {article.date_published}</strong>
+                )}
+                <br />
               </p>
 
               <p>
