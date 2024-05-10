@@ -1,3 +1,4 @@
+import React from "react";
 import ParseData from "../components/ParseData";
 
 const DisplayData = async () => {
@@ -27,8 +28,16 @@ const DisplayData = async () => {
               </h2>
 
               <p className="article-meta">
-                {article.category && (
-                  <strong>Category: {article.category}</strong>
+                {article.category && article.category.length > 0 && (
+                  <strong>
+                    Category:{" "}
+                    {article.category.map((category, index) => (
+                      <React.Fragment key={index}>
+                        {index > 0 && ", "}
+                        {category}
+                      </React.Fragment>
+                    ))}
+                  </strong>
                 )}
                 <br />
                 {article.author && <strong>Author: {article.author}</strong>}
