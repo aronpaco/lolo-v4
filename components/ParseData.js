@@ -3,14 +3,18 @@ import Parser from "@postlight/parser";
 
 const ParseData = async () => {
   let articleUrls = [];
-  const articleData = await FetchData();
+  let articleCategories = [];
+  let articleCategory;
+  let articleData = [];
+  const articleDataAll = await FetchData();
 
   for (let i = 0; i < articleData.length; i++) {
     let articleUrl = articleData[i][0];
     let articleCategory = articleData[i];
+    console.log({ articleCategory });
     articleUrls.push(articleUrl, articleCategory);
   }
-  console.log({ articleUrls });
+  //console.log({ articleUrls });
 
   const parseWithRetry = async (url) => {
     try {
@@ -20,12 +24,17 @@ const ParseData = async () => {
     }
   };
 
-  const parsingPromises = articleUrls.map(async (articleUrl) => {
+  const parsingPromises = articleDataAll.map(async (articleData) => {
     try {
-      const result = await parseWithRetry(articleUrl[0]);
-      let articleCategory = articleUrl[1];
-      console.log({ articleCategory });
-      result.category = articleCategory;
+      const result = await parseWithRetry(articleData[0]);
+
+      for (let i = 1; i < articleData.length; i++) {
+        //console.log({ articleUrl });
+        articleCategory = articleData[i];
+        articleCategories.push(articleCategory);
+      }
+      //console.log({ articleCategories });
+      result.category = articleCategories;
       //console.log(`Parsed successfully: ${articleUrl}`);
       return result;
     } catch (error) {
@@ -35,7 +44,7 @@ const ParseData = async () => {
 
   const parsedArticles = await Promise.all(parsingPromises);
 
-  console.log({ parsedArticles });
+  //console.log({ parsedArticles });
 
   return parsedArticles;
 };

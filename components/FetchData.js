@@ -24,10 +24,10 @@ const FetchData = async () => {
   let articleCategories = document.querySelectorAll("category");
   // articleCategories = articleCategories.innerHTML;
   console.log({ articleCategories }); */
-  extractArticleUrls();
+  extractArticleData();
   // extractArticleCategories();
 
-  function extractArticleUrls() {
+  function extractArticleData() {
     for (let i = 0; i < itemElements.length; i++) {
       const itemElement = itemElements[i].innerHTML;
       const itemElement_ = itemElements[i];
