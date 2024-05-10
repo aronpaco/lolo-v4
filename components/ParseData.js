@@ -27,6 +27,7 @@ const ParseData = async () => {
 
   const parsingPromises = articleDataAll.map(async (articleData) => {
     try {
+      let articleCategories = [];
       const result = await parseWithRetry(articleData[0]);
 
       for (let i = 1; i < articleData.length; i++) {
