@@ -39,7 +39,7 @@ const ParseData = async () => {
       //console.log({ articleCategories });
       result.category = articleCategories;
       //console.log(`Parsed successfully: ${articleUrl}`);
-      console.log({ result });
+      //console.log({ result });
       return result;
     } catch (error) {
       //console.error(`Error parsing ${articleUrl[0]}`);

@@ -1,5 +1,6 @@
 import React from "react";
 import ParseData from "../components/ParseData";
+import Image from "next/image";
 
 const DisplayData = async () => {
   try {
@@ -21,6 +22,16 @@ const DisplayData = async () => {
 
           return (
             <div key={index} className="article-card">
+              {article.lead_image_url && (
+                <div className="image-container">
+                  <img
+                    src={article.lead_image_url}
+                    width={200}
+                    height={200}
+                  ></img>
+                </div>
+              )}
+
               <h2 className="article-title">
                 <a href={article.url} target="_blank" rel="noopener noreferrer">
                   {article.title}
