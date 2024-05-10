@@ -7,7 +7,7 @@ const ParseData = async () => {
   let articleCategory;
   let articleData = [];
   const articleDataAll = await FetchData();
-
+  /*
   for (let i = 0; i < articleData.length; i++) {
     let articleUrl = articleData[i][0];
     let articleCategory = articleData[i];
@@ -15,6 +15,7 @@ const ParseData = async () => {
     articleUrls.push(articleUrl, articleCategory);
   }
   //console.log({ articleUrls });
+  */
 
   const parseWithRetry = async (url) => {
     try {
@@ -33,9 +34,11 @@ const ParseData = async () => {
         articleCategory = articleData[i];
         articleCategories.push(articleCategory);
       }
+
       //console.log({ articleCategories });
       result.category = articleCategories;
       //console.log(`Parsed successfully: ${articleUrl}`);
+      console.log({ result });
       return result;
     } catch (error) {
       //console.error(`Error parsing ${articleUrl[0]}`);
