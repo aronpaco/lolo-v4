@@ -7,8 +7,6 @@
 .article-card {
   width: 450px;
   border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 8px;
   background-color: #f9f9f9;
 }
 
@@ -19,8 +17,28 @@ a {
   text-decoration: none;
   cursor: pointer;
 }
+
 a:visited {
-  color: #696969
+  color: #696969;
+}
+
+.image-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.text-content {
+  padding: 20px;
+}
+
+.article-title {
+  margin-bottom: 10px;
 }
 
 .article-meta {
