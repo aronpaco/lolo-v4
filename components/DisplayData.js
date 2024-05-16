@@ -24,7 +24,13 @@ const DisplayData = async () => {
             <div key={index} className="article-card">
               {article.lead_image_url && (
                 <div className="image-container">
-                  <img src={article.lead_image_url} alt={article.title} />
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img src={article.lead_image_url} alt={article.title} />
+                  </a>
                 </div>
               )}
 
@@ -40,6 +46,14 @@ const DisplayData = async () => {
                 </h2>
 
                 <p className="article-meta">
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {article.excerpt}
+                  </a>
+                  <br />
                   {article.category && article.category.length > 0 && (
                     <strong>
                       Category:{" "}
