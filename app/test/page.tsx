@@ -1,5 +1,6 @@
 // pages/index.js
 "use client"
+import { GetQuery } from '@/components/GetQuery';
 import Link from 'next/link';
 import { useState } from 'react';
 

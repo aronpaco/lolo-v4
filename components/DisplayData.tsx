@@ -1,18 +1,23 @@
 import React from "react";
-import ParseData from "../components/ParseData";
+import ParseData from "./ParseData";
 import Image from "next/image";
 
-const DisplayData = async () => {
+type Props = {
+  page?: string;
+}
+
+async function DisplayData({page}: Props) {
+  
   try {
     const parsedArticles = await ParseData(
-      "https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss"
+      page
     );
     console.log("Done parsing");
 
     parsedArticles.sort((b, a) => {
       const dateA = new Date(a.date_published);
       const dateB = new Date(b.date_published);
-      return dateA - dateB;
+      return dateA.getTime() - dateB.getTime();
     });
 
     return (
@@ -86,6 +91,6 @@ const DisplayData = async () => {
     console.error("Error:", error);
     return <div>Error fetching articles.</div>;
   }
-};
+}
 
-export default DisplayData;
+export default DisplayData
