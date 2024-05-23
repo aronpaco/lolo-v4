@@ -1,12 +1,12 @@
 import FetchData from "../components/FetchData";
 import Parser from "@postlight/parser";
 
-const ParseData = async () => {
+const ParseData = async (page) => {
   let articleUrls = [];
   let articleCategories = [];
   let articleCategory;
   let articleData = [];
-  const articleDataAll = await FetchData();
+  const articleDataAll = await FetchData(page);
   /*
   for (let i = 0; i < articleData.length; i++) {
     let articleUrl = articleData[i][0];

@@ -4,7 +4,9 @@ import Image from "next/image";
 
 const DisplayData = async () => {
   try {
-    const parsedArticles = await ParseData();
+    const parsedArticles = await ParseData(
+      "https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss"
+    );
     console.log("Done parsing");
 
     parsedArticles.sort((b, a) => {
