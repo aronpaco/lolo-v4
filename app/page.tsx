@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import FetchData from '../components/FetchData'
 import RssParser from '../components/RssParser'
 import ParseData from '../components/ParseData'
 import DisplayData from '../components/DisplayData'
+import Link from 'next/link'
 
 export default async function Index() {
 
@@ -10,7 +11,9 @@ export default async function Index() {
     <body>
       <div>
         <h2>Articles</h2>
-        <DisplayData/>
+        <Suspense>
+          <DisplayData/>
+        </Suspense>
       </div>
     </body>
   )
