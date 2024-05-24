@@ -1,3 +1,4 @@
+import Search from '@/components/Search';
 import Link from 'next/link';
 import React from 'react'
 
@@ -6,9 +7,8 @@ export default function FeedList() {
 
     return(
         <>
-            <h1>feed list</h1>
             
-        <Link href={`feeds/${feedId}`}>Feed of {feedId}</Link>
+            <Search placeholder="https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss"/>
         </>
     )
 }
