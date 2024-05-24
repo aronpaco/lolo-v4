@@ -14,6 +14,21 @@ function formatDate(dateString: string) {
   });
 }
 
+const categoryColors: Record<string, string> = {
+  Technology: '#800000',
+  Productivity: '#804000',
+  "Machine Learning": '#7f8000',
+  "Artificial Intelligence": '#008000',
+  Databases: '#007f80',
+  Design: '#000080',
+  Architecture: '#400080',
+  Microsoft: '#80007f'
+};
+
+function getCategoryColor(category: string) {
+  return categoryColors[category] || '#6e6e6e';
+}
+
 async function DisplayData({ page }: Props) {
   try {
     const parsedArticles = await ParseData(page);
@@ -45,7 +60,24 @@ async function DisplayData({ page }: Props) {
                   </a>
                 </div>
               )}
-
+              {article.category && article.category.length > 0 && (
+                <strong>
+                  {article.category.map((category, index) => (
+                    <React.Fragment key={index}>
+                      {index > 0 && " "}
+                      <span
+                        style={{
+                          backgroundColor: getCategoryColor(category),
+                          padding: "0px 4px",
+                          color: "#fff",
+                        }}
+                      >
+                        {category}
+                      </span>
+                    </React.Fragment>
+                  ))}
+                </strong>
+              )}
               <div className="text-content">
                 <h2 className="article-title">
                   <a
@@ -66,22 +98,12 @@ async function DisplayData({ page }: Props) {
                     {article.excerpt}
                   </a>
                   <br />
-                  {article.category && article.category.length > 0 && (
-                    <strong>
-                      Category:{" "}
-                      {article.category.map((category, index) => (
-                        <React.Fragment key={index}>
-                          {index > 0 && ", "}
-                          {category}
-                        </React.Fragment>
-                      ))}
-                    </strong>
-                  )}
+                  
                   <br />
                   {article.author && <strong>Author: {article.author}</strong>}
                   <br />
                   {article.date_published && (
-                    <strong>Date published: {formatDate(article.date_published)}</strong>
+                    <strong>{formatDate(article.date_published)}</strong>
                   )}
                   <br />
                   <strong>Word Count:</strong> {article.word_count}
@@ -98,4 +120,4 @@ async function DisplayData({ page }: Props) {
   }
 }
 
-export default DisplayData
+export default DisplayData;
