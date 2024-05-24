@@ -3,7 +3,6 @@ import Parser from "@postlight/parser";
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import {} from "path";
-import defaultvalue from "./GetQuery";
 
 //const page = `https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss`;
 //console.log({ page });

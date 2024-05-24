@@ -1,7 +1,6 @@
 import DisplayData from "@/components/DisplayData";
-import Search2 from "@/components/Search2";
+import Search from "@/components/Search";
 import { Suspense } from "react";
-import TestComponent from "@/components/TestComponent"
 
 export default async function Page({
     searchParams,
@@ -15,7 +14,7 @@ export default async function Page({
     return(
         <div>
             <h1>Search page</h1>
-            <Search2 placeholder="Search..."/>
+            <Search placeholder="Search..."/>
             <h2>Articles</h2>
             <Suspense>      
                 <DisplayData page={page}/>
