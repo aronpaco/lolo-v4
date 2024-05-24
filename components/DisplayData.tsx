@@ -4,14 +4,20 @@ import Image from "next/image";
 
 type Props = {
   page?: string;
+};
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 }
 
-async function DisplayData({page}: Props) {
-  
+async function DisplayData({ page }: Props) {
   try {
-    const parsedArticles = await ParseData(
-      page
-    );
+    const parsedArticles = await ParseData(page);
     console.log("Done parsing");
 
     parsedArticles.sort((b, a) => {
@@ -76,7 +82,7 @@ async function DisplayData({page}: Props) {
                   {article.author && <strong>Author: {article.author}</strong>}
                   <br />
                   {article.date_published && (
-                    <strong>Date published: {article.date_published}</strong>
+                    <strong>Date published: {formatDate(article.date_published)}</strong>
                   )}
                   <br />
                   <strong>Word Count:</strong> {article.word_count}
