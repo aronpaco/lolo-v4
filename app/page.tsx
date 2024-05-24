@@ -9,7 +9,7 @@ export default async function Page({
       page?: string;
     };
   }) {
-    const page = searchParams?.page || "https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss";
+    const page = searchParams?.page || "";
 
     return(
         <div>
