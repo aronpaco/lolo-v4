@@ -16,9 +16,6 @@ function formatDate(dateString: string) {
 
 async function DisplayData({ page }: Props) {
   try {
-    if (page == "") {
-      page = "https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss"
-    }
     const parsedArticles = await ParseData(page);
     console.log("Done parsing");
 
