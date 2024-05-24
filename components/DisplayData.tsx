@@ -1,6 +1,5 @@
 import React from "react";
 import ParseData from "./ParseData";
-import Image from "next/image";
 
 type Props = {
   page?: string;
