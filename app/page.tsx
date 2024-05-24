@@ -1,20 +1,24 @@
-import React, { Suspense } from 'react'
-import FetchData from '../components/FetchData'
-import RssParser from '../components/RssParser'
-import ParseData from '../components/ParseData'
-import DisplayData from '../components/DisplayData'
-import Link from 'next/link'
+import DisplayData from "@/components/DisplayData";
+import Search from "@/components/Search";
+import { Suspense } from "react";
 
-export default async function Index() {
+export default async function Page({
+    searchParams,
+  }: {
+    searchParams?: {
+      page?: string;
+    };
+  }) {
+    const page = searchParams?.page || "";
 
-  return (
-    <body>
-      <div>
-        <h2>Articles</h2>
-        <Suspense>
-          <DisplayData/>
-        </Suspense>
-      </div>
-    </body>
-  )
+    return(
+        <div>
+            <h1>Search page</h1>
+            <Search placeholder="Search..."/>
+            <h2>Articles</h2>
+            <Suspense>      
+                <DisplayData page={page}/>
+            </Suspense>
+        </div>
+    )
 }
