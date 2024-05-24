@@ -29,15 +29,15 @@ function Search({ placeholder }: Props) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="input">
-        <label htmlFor="rss_url">Enter the URL of an RSS feed</label>
+        <h3>Enter the URL of an RSS feed</h3>
         <input
           placeholder={placeholder}
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
           autoFocus
         />
+        <button type="submit">Submit</button>
       </div>
-      <button type="submit">Submit</button>
     </form>
   );
 }

@@ -1,20 +1,49 @@
 body {
-  background-color: #dbdbdb;
+  background-color: #f3f3f3;
 }
 
-.input {
-  text-align: center;
+button, input {
+  transition-duration: 0.2s;
+  padding: 5px;
+  display: block;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 18px;
+  border-width: 0px;
+}
+
+button {
+  width: 10%;
+  background-color: #ffffff;
+}
+
+button:hover {
+  background-color: #1d2049;
+  color: white;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 input {
   width: 25%;
   height: 50px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 25px;
-  padding-left: 25px;
-  font-size: 18px;
+}
+
+input:focus {
+  border-width: 0px;
+  outline: 1px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 28%;
+  background-color: #eff0ff;
+}
+
+.input {
+  text-align: center;
 }
 
 .articles-container {

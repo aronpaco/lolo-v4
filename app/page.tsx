@@ -13,7 +13,7 @@ export default async function Page({
 
     return(
         <div>
-            <h1>Search page</h1>
+            <h1>Lolo-v4</h1>
             <Search placeholder="Search..."/>
             <h2>Articles</h2>
             <Suspense fallback={<p>Loading feed...</p>}>      
