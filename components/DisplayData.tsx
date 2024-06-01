@@ -29,6 +29,11 @@ function getCategoryColor(category: string) {
   return categoryColors[category] || '#6e6e6e';
 }
 
+let feedCounter = 0
+const feedColors = [
+  "#ffadad",  "#ffd6a5",  "#fdffb6",  "#caffbf",  "#9bf6ff",  "#a0c4ff",  "#bdb2ff",  "#ffc6ff"
+]
+
 async function DisplayData({ page }: Props) {
   try {
     const parsedArticles = await ParseData(page);
@@ -39,6 +44,7 @@ async function DisplayData({ page }: Props) {
       const dateB = new Date(b.date_published);
       return dateA.getTime() - dateB.getTime();
     });
+    feedCounter += 1
 
     return (
       <div className="articles-container">
@@ -48,7 +54,9 @@ async function DisplayData({ page }: Props) {
           }
 
           return (
-            <div key={index} className="article-card">
+            <div key={index} className="article-card" style={{
+              backgroundColor: feedColors[feedCounter],
+            }}>
               {article.lead_image_url && (
                 <div className="image-container">
                   <a
