@@ -4,34 +4,28 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import {} from "path";
 
-//const page = `https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss`;
-//console.log({ page });
-
-//let page = defaultvalue;
-//const page = searchParams.get("query")?.toString();
-
 let articleUrls = [];
 let articleUrl, articleCategory;
 let articleCategories = [];
 let articleDataAll = [];
 let articleData = [];
+
 const FetchData = async (page) => {
   console.log({ page });
-  const res = await fetch(page, {
+  const cacheBuster = `?_=${new Date().getTime()}`;
+  const res = await fetch(`${page}${cacheBuster}`, {
     headers: {
       "Cache-Control": "no-store",
     },
+    cache: "no-store",
   });
   const html = await res.text();
 
   const dom = new JSDOM(html);
   const document = dom.window.document;
-  const itemElements = document.getElementsByTagName("item"); /* 
-  let articleCategories = document.querySelectorAll("category");
-  // articleCategories = articleCategories.innerHTML;
-  console.log({ articleCategories }); */
+  const itemElements = document.getElementsByTagName("item");
+
   extractArticleData();
-  // extractArticleCategories();
 
   function extractArticleData() {
     for (let i = 0; i < itemElements.length; i++) {
@@ -60,7 +54,6 @@ const FetchData = async (page) => {
     }
     return articleDataAll;
   }
-  //console.log(articleDataAll);
 
   return articleDataAll;
 };
