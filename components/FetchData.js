@@ -50,6 +50,9 @@ const FetchData = async (page) => {
         }
         return articleCategories;
       });
+
+      articleData.push(page);
+
       articleDataAll.push(articleData);
     }
     return articleDataAll;
