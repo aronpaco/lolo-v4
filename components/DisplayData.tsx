@@ -34,11 +34,14 @@ const feedColors = [
   "#ffadad",  "#ffd6a5",  "#fdffb6",  "#caffbf",  "#9bf6ff",  "#a0c4ff",  "#bdb2ff",  "#ffc6ff"
 ]
 
+let parsedPages: string[] = []
+
 async function DisplayData({ page }: Props) {
   try {
     const parsedArticles = await ParseData(page);
+    parsedPages.push(`${page}`)
     console.log("Done parsing");
-
+    console.log({parsedPages})
     parsedArticles.sort((b, a) => {
       const dateA = new Date(a.date_published);
       const dateB = new Date(b.date_published);
