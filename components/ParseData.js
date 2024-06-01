@@ -38,6 +38,7 @@ const ParseData = async (page) => {
 
       //console.log({ articleCategories });
       result.category = articleCategories;
+      result.feed = page;
       //console.log(`Parsed successfully: ${articleUrl}`);
       //console.log({ result });
       return result;
