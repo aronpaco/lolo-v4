@@ -17,7 +17,8 @@ const FetchData = async (page) => {
     headers: {
       "Cache-Control": "no-store",
     },
-    cache: "no-store",
+    // cache: "no-store",
+    next: { revalidate: 3600 },
   });
   const html = await res.text();
 
