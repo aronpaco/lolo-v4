@@ -18,7 +18,7 @@ export default function Page({
         <div>
             <h1>Lolo-v4</h1>
             <Search placeholder="https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss"/>
-            <FeedsDisplayed feedUrls={feedUrls}/>
+            
             <h2>Articles</h2>
             <Suspense fallback={<p>Loading feed...</p>}>      
                 {feedUrls.map((feedUrl, index) => (
