@@ -2,7 +2,7 @@ import React from "react";
 import ParseData from "./ParseData";
 
 type Props = {
-  page?: string;
+  feedUrl?: string;
 };
 
 function formatDate(dateString: string) {
@@ -55,19 +55,20 @@ const checkIfArray = (value: any): boolean => {
 let parsedPages: string[] = []
 let parsedArticles: any[] = []
 let feedsUsedForColor: string[] = []
+let shownArticles: any[] = []
 
-async function DisplayData({ page }: Props) {
-  if (parsedPages.includes(`${page}`)) {
+async function DisplayData({ feedUrl }: Props) {
+  if (parsedPages.includes(`${feedUrl}`)) {
     console.log("This feed has already been fetched!")
     // Fetch from stored articles
   } else {
-    // Fetch from with ParseData(page)
+    // Fetch from with ParseData(feedUrl)
     try {
-      if (checkIfArray(page)) {
-        page = page?.at(-1)
+      if (checkIfArray(feedUrl)) { // check if one or multiple feeds
+        feedUrl = feedUrl?.at(-1)
       }
-      const parsedArticles = await ParseData(page);
-      // parsedPages.push(`${page}`)
+      const parsedArticles = await ParseData(feedUrl);
+      // parsedPages.push(`${feedUrl}`)
 
       console.log("Done parsing");
       // console.log({parsedPages})

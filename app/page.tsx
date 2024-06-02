@@ -6,10 +6,10 @@ export default async function Page({
     searchParams,
   }: {
     searchParams?: {
-      page?: string;
+      feedUrl?: string;
     };
   }) {
-    const page = searchParams?.page || "";
+    const feedUrl = searchParams?.feedUrl || "";
 
     return(
         <div>
@@ -17,7 +17,7 @@ export default async function Page({
             <Search placeholder="https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss"/>
             <h2>Articles</h2>
             <Suspense fallback={<p>Loading feed...</p>}>      
-                <DisplayData page={page}/>
+                <DisplayData feedUrl={feedUrl}/>
             </Suspense>
         </div>
     )

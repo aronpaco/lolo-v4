@@ -17,8 +17,8 @@ function Search({ placeholder }: Props) {
     e.preventDefault();
     const params = new URLSearchParams(searchParams);
 
-    if (searchTerm && !Array.from(params.getAll("page")).includes(searchTerm)) {
-      params.append("page", searchTerm);
+    if (searchTerm && !Array.from(params.getAll("feedUrl")).includes(searchTerm)) {
+      params.append("feedUrl", searchTerm);
     }
 
     replace(`${pathname}?${params.toString()}`);

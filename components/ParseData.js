@@ -1,12 +1,12 @@
 import FetchData from "../components/FetchData";
 import Parser from "@postlight/parser";
 
-const ParseData = async (page) => {
+const ParseData = async (feedUrl) => {
   let articleUrls = [];
   let articleCategories = [];
   let articleCategory;
   let articleData = [];
-  const articleDataAll = await FetchData(page);
+  const articleDataAll = await FetchData(feedUrl);
   /*
   for (let i = 0; i < articleData.length; i++) {
     let articleUrl = articleData[i][0];
@@ -38,7 +38,7 @@ const ParseData = async (page) => {
 
       //console.log({ articleCategories });
       result.category = articleCategories;
-      result.feed = page;
+      result.feed = feedUrl;
       //console.log(`Parsed successfully: ${articleUrl}`);
       //console.log({ result });
       return result;
