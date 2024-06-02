@@ -3,16 +3,14 @@ import Search from "@/components/Search";
 import { Suspense } from "react";
 import FeedsDisplayed from "@/components/FeedsDisplayed"
 
-export default function Page({
+export default async function Page({
     searchParams,
   }: {
     searchParams?: {
-      feedUrl?: string | string[];
+      feedUrl?: string;
     };
   }) {
-    const feedUrls = Array.isArray(searchParams?.feedUrl)
-      ? searchParams?.feedUrl
-      : [searchParams?.feedUrl].filter(Boolean);
+    const feedUrl = searchParams?.feedUrl || "";
 
     return(
         <div>
@@ -21,9 +19,7 @@ export default function Page({
             
             <h2>Articles</h2>
             <Suspense fallback={<p>Loading feed...</p>}>      
-                {feedUrls.map((feedUrl, index) => (
-                  <DisplayData key={index} feedUrl={feedUrl}/>
-                ))}
+                <DisplayData feedUrl={feedUrl}/>
             </Suspense>
         </div>
     )
