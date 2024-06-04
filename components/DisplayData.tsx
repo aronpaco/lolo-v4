@@ -15,14 +15,18 @@ function formatDate(dateString: string) {
 }
 
 const categoryColors: Record<string, string> = {
-  Technology: '#800000',
-  Productivity: '#804000',
+  "Technology": '#800000',
+  "Productivity": '#804000',
   "Machine Learning": '#7f8000',
   "Artificial Intelligence": '#008000',
-  Databases: '#007f80',
-  Design: '#000080',
-  Architecture: '#400080',
-  Microsoft: '#80007f'
+  "Databases": '#007f80',
+  "Design": '#000080',
+  "Architecture": '#400080',
+  "Microsoft": '#80007f',
+  "Authentication": '#660000',
+  "Security": '#663300',
+  "The Web": '#336600',
+  "Web Applications": '#003366'
 };
 
 function getCategoryColor(category: string) {
