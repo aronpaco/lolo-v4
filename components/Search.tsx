@@ -11,18 +11,19 @@ function Search({ placeholder }: Props) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(searchParams.get("feedUrl")?.toString() || "");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const params = new URLSearchParams(searchParams);
 
-    if (searchTerm && !Array.from(params.getAll("feedUrl")).includes(searchTerm)) {
-      params.append("feedUrl", searchTerm);
+    if (searchTerm) {
+      params.set("feedUrl", searchTerm);
+    } else {
+      params.delete("feedUrl");
     }
 
     replace(`${pathname}?${params.toString()}`);
-    setSearchTerm("");
   };
 
   return (
