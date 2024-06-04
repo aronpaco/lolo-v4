@@ -12,7 +12,6 @@ let articleData = [];
 
 const FetchData = async (feedUrl) => {
   console.log({ feedUrl });
-  // const cacheBuster = `?_=${new Date().getTime()}`;
   const res = await fetch(`${feedUrl}`, {
     headers: {
       "Cache-Control": "no-store",

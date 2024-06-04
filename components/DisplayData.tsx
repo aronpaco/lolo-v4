@@ -29,57 +29,21 @@ function getCategoryColor(category: string) {
   return categoryColors[category] || '#6e6e6e';
 }
 
-let feedCounter = 0
-const feedColors: string[] = [
-  "#ffadad", "#ffd6a5", "#fdffb6", "#caffbf",
-  "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"
-];
-const feedColorMap: { [feed: string]: string } = {};
-
-function getFeedColor(feed: string | undefined): string | undefined {
-  if (feed === undefined) return undefined;
-
-  if (feedColorMap.hasOwnProperty(feed)) {
-    return feedColorMap[feed];
-  }
-  const colorIndex = Object.keys(feedColorMap).length % feedColors.length;
-  const color = feedColors[colorIndex];
-  feedColorMap[feed] = color;
-  return color;
-}
-
-const checkIfArray = (value: any): boolean => {
-  return Array.isArray(value);
-};
-
 let parsedPages: string[] = []
-let parsedArticles: any[] = []
-let feedsUsedForColor: string[] = []
-let shownArticles: any[] = []
 
 async function DisplayData({ feedUrl }: Props) {
   if (parsedPages.includes(`${feedUrl}`)) {
     console.log("This feed has already been fetched!")
-    // Fetch from stored articles
   } else {
-    // Fetch from with ParseData(feedUrl)
     try {
-      if (checkIfArray(feedUrl)) { // check if one or multiple feeds
-        feedUrl = feedUrl?.at(-1)
-      }
       const parsedArticles = await ParseData(feedUrl);
-      // parsedPages.push(`${feedUrl}`)
 
       console.log("Done parsing");
-      // console.log({parsedPages})
-      // parsedArticles.push(parsedArticlesFromOneFeed)
       parsedArticles.sort((b, a) => {
         const dateA = new Date(a.date_published);
         const dateB = new Date(b.date_published);
         return dateA.getTime() - dateB.getTime();
       });
-      feedCounter += 1
-      // console.log(parsedArticles[0])
 
       return (
         <div className="articles-container">
@@ -89,9 +53,7 @@ async function DisplayData({ feedUrl }: Props) {
             }
 
             return (
-              <div key={index} className="article-card" style={{
-                backgroundColor: getFeedColor(article.feed)
-              }}>
+              <div key={index} className="article-card" >
                 {article.lead_image_url && (
                   <div className="image-container">
                     <a
