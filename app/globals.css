@@ -1,5 +1,13 @@
 body {
   background-color: #f3f3f3;
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  max-width: 1410px;
+  width: 100%;
+  padding: 20px;
 }
 
 button, input {
@@ -26,7 +34,6 @@ button:hover {
   color: white;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
 }
 
 input {
@@ -50,6 +57,7 @@ input:focus {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .article-card {
