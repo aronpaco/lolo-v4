@@ -22,7 +22,6 @@ export default async function Page({
               <Suspense fallback={<p>Loading feed...</p>}>      
                   <DisplayData feedUrl={feedUrl}/>
               </Suspense>
-
             </div>
           </body>
     )
