@@ -16,7 +16,7 @@ export default async function Page({
           <body>
             <div className="main-container">
               <h1>Lolo-v4</h1>
-              <Search placeholder="https://flipboard.com/@raimoseero/feed-nii8kd0sz.rss"/>
+              <Search placeholder="https://time.com/feed"/>
               
               <h2>Articles</h2>
               <Suspense fallback={<p>Loading feed...</p>}>      
